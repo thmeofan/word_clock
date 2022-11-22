@@ -1,13 +1,13 @@
-class WorldClockState{}
+import '../models/world_clock_model.dart';
 
-class WorldClockDataState extends WorldClockState{
-   final List<DateTime> timeData;
+class WorldClockState {}
+
+class WorldClockDataState extends WorldClockState {
+  final List<WorldClockModel> timeData;
 
   WorldClockDataState(this.timeData);
-
 }
-class EmptyState extends WorldClockState {
 
-}
+class EmptyState extends WorldClockState {}
 
 class LoadingState extends WorldClockState {}

@@ -1,16 +1,21 @@
-class WorldClockEvent{}
+import '../models/world_clock_model.dart';
 
-class SaveClockEvent extends WorldClockEvent{
-final DateTime theTime;
-SaveClockEvent(this.theTime);
+class WorldClockEvent {}
+
+class SaveClockEvent extends WorldClockEvent {
+  final WorldClockModel theTime;
+
+  SaveClockEvent(this.theTime);
 }
 
+class DeleteClockEvent extends WorldClockEvent {
+  final WorldClockModel theTime;
 
-class DeleteClockEvent extends WorldClockEvent{
-final DateTime theTime;
-DeleteClockEvent(this.theTime);
+  DeleteClockEvent(this.theTime);
 }
 
-class DeleteEveryClockEvent extends WorldClockEvent{
-DeleteEveryClockEvent();
+class DeleteEveryClockEvent extends WorldClockEvent {
+  DeleteEveryClockEvent();
 }
+
+class EmptyListEvent extends WorldClockEvent {}
