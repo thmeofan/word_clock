@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:word_clock/bloc/world_clock_event.dart';
+import 'package:word_clock/consts/ui_consts.dart';
 
 import '../bloc/world_clock_bloc.dart';
 import '../models/world_clock_model.dart';
@@ -52,12 +53,12 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(188, 231, 253, 1),
+        backgroundColor: AppColors.backgroundColor,
         appBar: AppBar(
-          backgroundColor: Color.fromRGBO(175, 59, 110, 1),
+          backgroundColor: AppColors.darkerClockColor,
           title: const Text(
             "Create",
-            style: TextStyle(color: Color.fromRGBO(186, 103, 144, 1)),
+            style: TextStyle(color: AppColors.mainClockColor),
           ),
         ),
         body: Column(
@@ -66,7 +67,7 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
             Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                color: Color.fromRGBO(175, 59, 110, 1),
+                color: AppColors.darkerClockColor,
               ),
               width: double.maxFinite,
               margin: const EdgeInsets.all(30),
@@ -74,27 +75,25 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
               child: TextField(
                 decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromRGBO(186, 103, 144, 1)),
+                    borderSide: BorderSide(color: AppColors.mainClockColor),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide:
-                        BorderSide(color: Color.fromRGBO(186, 103, 144, 1)),
+                    borderSide: BorderSide(color: AppColors.mainClockColor),
                   ),
                 ),
-                style: const TextStyle(color: Color.fromRGBO(186, 103, 144, 1)),
-                cursorColor: const Color.fromRGBO(186, 103, 144, 1),
+                style: const TextStyle(color: AppColors.mainClockColor),
+                cursorColor: AppColors.mainClockColor,
                 controller: myController,
               ),
             ),
             Spacer(),
             const Text(
               'choose your location',
-              style: TextStyle(color: Color.fromRGBO(186, 103, 144, 1)),
+              style: TextStyle(color: AppColors.mainClockColor),
             ),
             DropdownButton<int>(
-              dropdownColor: Color.fromRGBO(175, 59, 110, 1),
-              focusColor: Color.fromRGBO(186, 103, 144, 1),
+              dropdownColor: AppColors.darkerClockColor,
+              focusColor: AppColors.mainClockColor,
               value: selectedTimeOption,
               items: timeOptions
                   .map((timeOption) => DropdownMenuItem<int>(
@@ -114,7 +113,7 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
                 myController.clear();
                 Navigator.of(context).pop();
               },
-              backgroundColor: const Color.fromRGBO(175, 59, 110, 1),
+              backgroundColor: AppColors.darkerClockColor,
               child: const Icon(Icons.add_alarm_outlined),
             ),
           ],

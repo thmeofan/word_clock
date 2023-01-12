@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_clock/one_clock.dart';
+import 'package:word_clock/consts/ui_consts.dart';
 import 'package:word_clock/models/world_clock_model.dart';
 
 import '../bloc/world_clock_bloc.dart';
@@ -22,7 +23,7 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-       mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Dismissible(
@@ -40,14 +41,14 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
                 height: 90,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
-                  color: Color.fromRGBO(196, 146, 177, 1),
+                  color: AppColors.theLightestClockColor,
                   border: Border.all(
-                    color: Color.fromRGBO(186, 103, 144, 1),
+                    color: AppColors.darkerClockColor,
                     width: 3.0,
                   ),
                   boxShadow: const [
                     BoxShadow(
-                        color: Color.fromRGBO(175, 59, 110, 1),
+                        color: AppColors.darkerClockColor,
                         spreadRadius: 5,
                         blurRadius: 15)
                   ],
@@ -61,13 +62,13 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
                         borderRadius: BorderRadius.all(Radius.circular(10.0)),
                       ),
                       datetime: widget.yourWorldClock.time,
-                      digitalClockTextColor: const Color.fromRGBO(175, 59, 110, 1),
+                      digitalClockTextColor: AppColors.darkerClockColor,
                       textScaleFactor: 1.18,
                     ),
                     Text(
                       widget.yourWorldClock.location,
-                      style: TextStyle(
-                          fontSize: 20, color: Color.fromRGBO(175, 59, 110, 1)),
+                      style: const TextStyle(
+                          fontSize: 20, color: AppColors.darkerClockColor),
                     ),
                   ],
                 ),
@@ -75,7 +76,6 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
             ),
           ),
         ],
-        // This trailing comma makes auto-formatting nicer for build methods.
       ),
     );
   }

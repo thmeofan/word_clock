@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_clock/one_clock.dart';
 import 'package:word_clock/bloc/world_clock_event.dart';
 import 'package:word_clock/bloc/world_clock_state.dart';
+import 'package:word_clock/consts/ui_consts.dart';
 
 import '../bloc/world_clock_bloc.dart';
 import '../consts/screens.dart';
@@ -26,9 +27,9 @@ class _ClockScreenState extends State<ClockScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(188, 231, 253, 1),
+      backgroundColor: AppColors.backgroundColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color.fromRGBO(175, 59, 110, 1),
+        backgroundColor: AppColors.darkerClockColor,
         heroTag: "btn1",
         onPressed: () {
           Navigator.pushNamed(context, Screens.addTimeScreen);
@@ -38,7 +39,7 @@ class _ClockScreenState extends State<ClockScreen> {
         ),
       ),
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(175, 59, 110, 1),
+        backgroundColor: AppColors.darkerClockColor,
         title: const Text("World Clock"),
         actions: [
           PopupMenuButton(
@@ -66,12 +67,12 @@ class _ClockScreenState extends State<ClockScreen> {
             decoration: BoxDecoration(
               boxShadow: const [
                 BoxShadow(
-                    color: Color.fromRGBO(175, 59, 110, 1),
+                    color: AppColors.darkerClockColor,
                     spreadRadius: 5,
                     blurRadius: 15)
               ],
               border: Border.all(
-                color: Color.fromRGBO(175, 59, 110, 1),
+                color: AppColors.darkerClockColor,
                 width: 5.0,
               ),
               borderRadius: const BorderRadius.all(
@@ -83,13 +84,13 @@ class _ClockScreenState extends State<ClockScreen> {
             child: Container(
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                color: Color.fromRGBO(186, 103, 144, 1),
+                color: AppColors.mainClockColor,
               ),
               width: 200.0,
               height: 100.0,
               child: DigitalClock(
                 datetime: DateTime.now(),
-                digitalClockTextColor: const Color.fromRGBO(175, 59, 110, 1),
+                digitalClockTextColor: AppColors.darkerClockColor,
                 isLive: true,
                 textScaleFactor: 2.0,
                 decoration: const BoxDecoration(
@@ -97,9 +98,7 @@ class _ClockScreenState extends State<ClockScreen> {
                     shape: BoxShape.rectangle),
               ),
             ),
-            // const Text('Time of your current location'),
           ),
-          // Spacer(),
           Expanded(
             child: BlocBuilder<WorldClockBloc, WorldClockState>(
                 builder: (context, state) {
@@ -123,8 +122,6 @@ class _ClockScreenState extends State<ClockScreen> {
                 }
                 return GridView.count(
                   crossAxisCount: 2,
-                  // mainAxisSpacing: 1.0,
-                  // crossAxisSpacing: 1.0,
                   children: dateTimeWidgets,
                 );
               } else {

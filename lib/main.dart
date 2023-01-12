@@ -4,14 +4,15 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:word_clock/bloc/world_clock_event.dart';
 import 'package:word_clock/consts/screens.dart';
+import 'package:word_clock/consts/ui_consts.dart';
 import 'package:word_clock/screens/add_time_screen.dart';
 import 'package:word_clock/screens/clock_screen.dart';
 
 import 'bloc/world_clock_bloc.dart';
 import 'models/world_clock_model.dart';
 
-const String clocksKeeperKey = 'notes_keeper';
-const String clocksModelKey = 'notes_List_key';
+const String clocksKeeperKey = 'clock_info_keeper';
+const String clocksModelKey = 'clock_model_key';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -58,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         return MaterialApp(
           title: 'World_Clock',
           theme: ThemeData(
-            backgroundColor: Color.fromRGBO(188, 231, 253, 1),
+            backgroundColor: AppColors.backgroundColor,
           ),
           routes: {
             Screens.clockScreen: (context) => ClockScreen(),
