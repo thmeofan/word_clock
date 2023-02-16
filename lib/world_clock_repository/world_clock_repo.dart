@@ -1,18 +1,27 @@
 import 'package:hive/hive.dart';
 
+import '../bloc/world_clock_bloc.dart';
 import '../main.dart';
 import '../models/world_clock_model.dart';
 
-class WorldClockRepositoryForHive {
-  static final WorldClockRepositoryForHive _worldClockRepositoryForHive =
-      WorldClockRepositoryForHive._internal();
+class WorldClockRepo {
+  static final WorldClockRepo _worldClockRepo =
+      WorldClockRepo._internal();
 
-  WorldClockRepositoryForHive._internal();
+  WorldClockRepo._internal();
 
-  factory WorldClockRepositoryForHive() {
-    return _worldClockRepositoryForHive;
+  factory WorldClockRepo() {
+    return _worldClockRepo;
   }
 
+  Future<List <WorldClockModel>>readFromHive() async {
+    var box = await Hive.openBox(clocksKeeperKey);
+     List<WorldClockModel> clockList =
+    box.get(clocksModelKey, defaultValue: []).cast<WorldClockModel>();
+
+    await box.close();
+    return clockList;
+  }
   Future<void> saveToHive(List<WorldClockModel> clocks) async {
     var box = await Hive.openBox(clocksKeeperKey);
     List<WorldClockModel> clocksList =
@@ -22,6 +31,7 @@ class WorldClockRepositoryForHive {
     await box.put(clocksKeeperKey, clocksList);
     await box.close();
   }
+
 
   Future<void> deleteFromHive(WorldClockModel theClock) async {
     var box = await Hive.openBox(clocksKeeperKey);

@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_clock/one_clock.dart';
@@ -51,7 +51,7 @@ class _ClockScreenState extends State<ClockScreen> {
               itemBuilder: (BuildContext context) => <PopupMenuEntry<Menu>>[
                     PopupMenuItem(
                         value: Menu.delete,
-                        child: Text('Delete all'),
+                        child: const Text('Delete all'),
                         onTap: () {
                           context
                               .read<WorldClockBloc>()

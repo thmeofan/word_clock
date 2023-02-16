@@ -7,6 +7,7 @@ import 'package:word_clock/consts/screens.dart';
 import 'package:word_clock/consts/ui_consts.dart';
 import 'package:word_clock/screens/add_time_screen.dart';
 import 'package:word_clock/screens/clock_screen.dart';
+import 'package:word_clock/world_clock_repository/world_clock_repo.dart';
 
 import 'bloc/world_clock_bloc.dart';
 import 'models/world_clock_model.dart';
@@ -38,22 +39,11 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [BlocProvider(create: (context) => WorldClockBloc())],
       child: Builder(builder: (context) {
-        Hive.openBox(clocksKeeperKey).then((box) {
-          if (box.isNotEmpty) {
-            List<WorldClockModel> clockList =
-                box.get(clocksModelKey).cast<WorldClockBloc>();
-            if (clockList.isEmpty) {
-              context.read<WorldClockBloc>().add(EmptyListEvent());
-            } else {
-              for (int index = 0; index < clockList.length; index++) {
-                context
-                    .read<WorldClockBloc>()
-                    .add(SaveClockEvent(clockList[index]));
-              }
-            }
-            box.close();
-          } else {
+        WorldClockRepo().readFromHive().then((clockList) {
+          if (clockList.isEmpty) {
             context.read<WorldClockBloc>().add(EmptyListEvent());
+          } else {
+            context.read<WorldClockBloc>().add(SaveAllClocksEvent(clockList));
           }
         });
         return MaterialApp(

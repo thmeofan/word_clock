@@ -1,6 +1,6 @@
 import '../models/world_clock_model.dart';
 
-class WorldClockState {}
+abstract class WorldClockState {}
 
 class WorldClockDataState extends WorldClockState {
   final List<WorldClockModel> timeData;
