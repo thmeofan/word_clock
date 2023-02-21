@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_clock/one_clock.dart';
@@ -30,6 +29,7 @@ class _ClockScreenState extends State<ClockScreen> {
       backgroundColor: AppColors.backgroundColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.darkerClockColor,
+        foregroundColor: AppColors.theLightestClockColor,
         heroTag: "btn1",
         onPressed: () {
           Navigator.pushNamed(context, Screens.addTimeScreen);
@@ -63,6 +63,7 @@ class _ClockScreenState extends State<ClockScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          const SizedBox(height: 30),
           Container(
             decoration: BoxDecoration(
               boxShadow: const [
@@ -71,10 +72,10 @@ class _ClockScreenState extends State<ClockScreen> {
                     spreadRadius: 5,
                     blurRadius: 15)
               ],
-              border: Border.all(
-                color: AppColors.darkerClockColor,
-                width: 5.0,
-              ),
+              // border: Border.all(
+              //   color: AppColors.darkerClockColor,
+              //   width: 5.0,
+              // ),
               borderRadius: const BorderRadius.all(
                 Radius.circular(15.0),
               ),

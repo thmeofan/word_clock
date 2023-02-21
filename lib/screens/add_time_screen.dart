@@ -88,12 +88,14 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
             ),
             Spacer(),
             const Text(
-              'choose your location',
-              style: TextStyle(color: AppColors.mainClockColor),
+              'Choose your GMT sector:',
+              style: TextStyle(color: AppColors.mainClockColor,fontSize: 20),
             ),
+            SizedBox(height: 15),
             DropdownButton<int>(
               dropdownColor: AppColors.darkerClockColor,
               focusColor: AppColors.mainClockColor,
+              menuMaxHeight: 152,
               value: selectedTimeOption,
               items: timeOptions
                   .map((timeOption) => DropdownMenuItem<int>(
@@ -114,6 +116,7 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
                 Navigator.of(context).pop();
               },
               backgroundColor: AppColors.darkerClockColor,
+              foregroundColor: AppColors.theLightestClockColor,
               child: const Icon(Icons.add_alarm_outlined),
             ),
           ],

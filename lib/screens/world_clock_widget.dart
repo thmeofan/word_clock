@@ -37,15 +37,15 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
             },
             child: GestureDetector(
               child: Container(
-                width: 120,
-                height: 90,
+                width: 180,
+                height: 150,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   color: AppColors.theLightestClockColor,
-                  border: Border.all(
-                    color: AppColors.darkerClockColor,
-                    width: 3.0,
-                  ),
+                  // border: Border.all(
+                  //   color: AppColors.darkerClockColor,
+                  //   width: 3.0,
+                  // ),
                   boxShadow: const [
                     BoxShadow(
                         color: AppColors.darkerClockColor,
@@ -57,14 +57,39 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    DigitalClock(
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    Flexible(
+                      child: AnalogClock(
+                        decoration: BoxDecoration(
+                            border: Border.all(width: 2.0, color: AppColors.darkerClockColor),
+                            color: AppColors.mainClockColor,
+                            shape: BoxShape.circle),
+                        width: 100.0,
+                        isLive: true,
+                        hourHandColor: AppColors.darkerClockColor,
+                        minuteHandColor: AppColors.darkerClockColor,
+                        secondHandColor: AppColors.theLightestClockColor,
+                        showSecondHand: true,
+                        numberColor: AppColors.darkerClockColor,
+                        showNumbers: true,
+                        showAllNumbers: true,
+                        textScaleFactor: 2.0,
+                        showTicks: false,
+                        showDigitalClock: false,
+                        datetime: widget.yourWorldClock.time,
                       ),
-                      datetime: widget.yourWorldClock.time,
-                      digitalClockTextColor: AppColors.darkerClockColor,
-                      textScaleFactor: 1.18,
                     ),
+                    // AnalogClock(
+                    //   // decoration: const BoxDecoration(
+                    //   //  // borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    //   //   color: AppColors.mainClockColor,
+                    //   // ),
+                    //
+                    //   showTicks: true,
+                    //   showNumbers: true,
+                    //   showSecondHand: true,
+                    //   tickColor:AppColors.darkerClockColor,
+                    //   //textScaleFactor: 1.18,
+                    // ),
                     Text(
                       widget.yourWorldClock.location,
                       style: const TextStyle(
