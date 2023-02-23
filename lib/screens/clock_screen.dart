@@ -40,7 +40,10 @@ class _ClockScreenState extends State<ClockScreen> {
       ),
       appBar: AppBar(
         backgroundColor: AppColors.darkerClockColor,
-        title: const Text("World Clock"),
+        title: const Text(
+          "World Clock",
+          style: TextStyle(color: AppColors.theLightestClockColor),
+        ),
         actions: [
           PopupMenuButton(
               onSelected: (Menu item) {
@@ -65,18 +68,18 @@ class _ClockScreenState extends State<ClockScreen> {
         children: [
           const SizedBox(height: 30),
           Container(
-            decoration: BoxDecoration(
-              boxShadow: const [
+            decoration:  BoxDecoration(
+              boxShadow: [
                 BoxShadow(
                     color: AppColors.darkerClockColor,
                     spreadRadius: 5,
                     blurRadius: 15)
               ],
-              // border: Border.all(
-              //   color: AppColors.darkerClockColor,
-              //   width: 5.0,
-              // ),
-              borderRadius: const BorderRadius.all(
+              border: Border.all(
+                color: AppColors.darkerClockColor,
+                width: 5.0,
+              ),
+              borderRadius: BorderRadius.all(
                 Radius.circular(15.0),
               ),
             ),
@@ -91,7 +94,7 @@ class _ClockScreenState extends State<ClockScreen> {
               height: 100.0,
               child: DigitalClock(
                 datetime: DateTime.now(),
-                digitalClockTextColor: AppColors.darkerClockColor,
+                digitalClockTextColor: AppColors.theLightestClockColor,
                 isLive: true,
                 textScaleFactor: 2.0,
                 decoration: const BoxDecoration(

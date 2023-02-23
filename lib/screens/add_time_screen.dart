@@ -54,11 +54,25 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.backgroundColor,
+        floatingActionButton: FloatingActionButton(
+          heroTag: "btn3",
+          onPressed: () {
+            WorldClockModel theTime = WorldClockModel(
+                DateTime.now().add(Duration(hours: selectedTimeOption)),
+                myController.text);
+            context.read<WorldClockBloc>().add(SaveClockEvent(theTime));
+            myController.clear();
+            Navigator.of(context).pop();
+          },
+          backgroundColor: AppColors.darkerClockColor,
+          foregroundColor: AppColors.theLightestClockColor,
+          child: const Icon(Icons.add_alarm_outlined),
+        ),
         appBar: AppBar(
           backgroundColor: AppColors.darkerClockColor,
           title: const Text(
             "Create",
-            style: TextStyle(color: AppColors.mainClockColor),
+            style: TextStyle(color: AppColors.theLightestClockColor),
           ),
         ),
         body: Column(
@@ -75,13 +89,15 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
               child: TextField(
                 decoration: const InputDecoration(
                   enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.mainClockColor),
+                    borderSide:
+                        BorderSide(color: AppColors.theLightestClockColor),
                   ),
                   focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(color: AppColors.mainClockColor),
+                    borderSide:
+                        BorderSide(color: AppColors.theLightestClockColor),
                   ),
                 ),
-                style: const TextStyle(color: AppColors.mainClockColor),
+                style: const TextStyle(color: AppColors.theLightestClockColor),
                 cursorColor: AppColors.mainClockColor,
                 controller: myController,
               ),
@@ -89,9 +105,9 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
             Spacer(),
             const Text(
               'Choose your GMT sector:',
-              style: TextStyle(color: AppColors.mainClockColor,fontSize: 20),
+              style: TextStyle(color: AppColors.mainClockColor, fontSize: 20),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 25),
             DropdownButton<int>(
               dropdownColor: AppColors.darkerClockColor,
               focusColor: AppColors.mainClockColor,
@@ -99,26 +115,20 @@ class _AddTimeScreenState extends State<AddTimeScreen> {
               value: selectedTimeOption,
               items: timeOptions
                   .map((timeOption) => DropdownMenuItem<int>(
-                      value: timeOption, child: Text('$timeOption')))
+                      value: timeOption,
+                      child: Text(
+                        '$timeOption',
+                        style:
+                            TextStyle(color: AppColors.theLightestClockColor),
+                      )))
                   .toList(),
               onChanged: (timeOption) =>
                   setState(() => selectedTimeOption = timeOption!),
+              borderRadius: BorderRadius.all(
+                Radius.circular(10.0),
+              ),
             ),
             Spacer(),
-            FloatingActionButton(
-              heroTag: "btn3",
-              onPressed: () {
-                WorldClockModel theTime = WorldClockModel(
-                    DateTime.now().add(Duration(hours: selectedTimeOption)),
-                    myController.text);
-                context.read<WorldClockBloc>().add(SaveClockEvent(theTime));
-                myController.clear();
-                Navigator.of(context).pop();
-              },
-              backgroundColor: AppColors.darkerClockColor,
-              foregroundColor: AppColors.theLightestClockColor,
-              child: const Icon(Icons.add_alarm_outlined),
-            ),
           ],
         ));
   }

@@ -42,10 +42,10 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(8.0)),
                   color: AppColors.theLightestClockColor,
-                  // border: Border.all(
-                  //   color: AppColors.darkerClockColor,
-                  //   width: 3.0,
-                  // ),
+                  border: Border.all(
+                    color: AppColors.darkerClockColor,
+                    width: 3.0,
+                  ),
                   boxShadow: const [
                     BoxShadow(
                         color: AppColors.darkerClockColor,
@@ -78,18 +78,6 @@ class _WorldClockWidgetState extends State<WorldClockWidget> {
                         datetime: widget.yourWorldClock.time,
                       ),
                     ),
-                    // AnalogClock(
-                    //   // decoration: const BoxDecoration(
-                    //   //  // borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                    //   //   color: AppColors.mainClockColor,
-                    //   // ),
-                    //
-                    //   showTicks: true,
-                    //   showNumbers: true,
-                    //   showSecondHand: true,
-                    //   tickColor:AppColors.darkerClockColor,
-                    //   //textScaleFactor: 1.18,
-                    // ),
                     Text(
                       widget.yourWorldClock.location,
                       style: const TextStyle(
