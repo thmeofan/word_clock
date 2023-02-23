@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:one_clock/one_clock.dart';
@@ -30,6 +29,7 @@ class _ClockScreenState extends State<ClockScreen> {
       backgroundColor: AppColors.backgroundColor,
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors.darkerClockColor,
+        foregroundColor: AppColors.theLightestClockColor,
         heroTag: "btn1",
         onPressed: () {
           Navigator.pushNamed(context, Screens.addTimeScreen);
@@ -40,7 +40,10 @@ class _ClockScreenState extends State<ClockScreen> {
       ),
       appBar: AppBar(
         backgroundColor: AppColors.darkerClockColor,
-        title: const Text("World Clock"),
+        title: const Text(
+          "World Clock",
+          style: TextStyle(color: AppColors.theLightestClockColor),
+        ),
         actions: [
           PopupMenuButton(
               onSelected: (Menu item) {
@@ -63,9 +66,10 @@ class _ClockScreenState extends State<ClockScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
+          const SizedBox(height: 30),
           Container(
-            decoration: BoxDecoration(
-              boxShadow: const [
+            decoration:  BoxDecoration(
+              boxShadow: [
                 BoxShadow(
                     color: AppColors.darkerClockColor,
                     spreadRadius: 5,
@@ -75,7 +79,7 @@ class _ClockScreenState extends State<ClockScreen> {
                 color: AppColors.darkerClockColor,
                 width: 5.0,
               ),
-              borderRadius: const BorderRadius.all(
+              borderRadius: BorderRadius.all(
                 Radius.circular(15.0),
               ),
             ),
@@ -90,7 +94,7 @@ class _ClockScreenState extends State<ClockScreen> {
               height: 100.0,
               child: DigitalClock(
                 datetime: DateTime.now(),
-                digitalClockTextColor: AppColors.darkerClockColor,
+                digitalClockTextColor: AppColors.theLightestClockColor,
                 isLive: true,
                 textScaleFactor: 2.0,
                 decoration: const BoxDecoration(
